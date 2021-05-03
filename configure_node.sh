@@ -22,7 +22,7 @@ tar -xzf openmpi-1.8.1.tar.gz && cd openmpi-1.8.1
 make
 make install
 
-mv /local/.bashrc /user/mpiuser/
+mv /local/.bashrc /home/mpiuser/
 
 # Genererate ssh-keys
 ssh-keygen -t rsa -N "" -f /${USER}/.ssh/id_rsa
