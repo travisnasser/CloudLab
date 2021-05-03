@@ -30,11 +30,7 @@ pc.defineParameter("nodeCount", "Number of Nodes", portal.ParameterType.INTEGER,
 # Pick your OS.
 imageList = [
     ('default', 'Default Image'),
-    ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD', 'UBUNTU 18.04'),
-    ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD', 'UBUNTU 20.04'),
-    ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU16-64-STD', 'UBUNTU 16.04'),
-    ('urn:publicid:IDN+emulab.net+image+emulab-ops//CENTOS7-64-STD',  'CENTOS 7'),
-    ('urn:publicid:IDN+emulab.net+image+emulab-ops//FBSD112-64-STD', 'FreeBSD 11.2')]
+    ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-ARM', 'UBUNTU 18.04')]
 
 pc.defineParameter("osImage", "Select OS image",
                    portal.ParameterType.IMAGE,
@@ -155,8 +151,10 @@ for i in range(params.nodeCount):
             pass
         bs.placement = "any"
         pass
+    # Install and execute scripts on the node. 
+    node.addService(pg.Install(url="https://github.com/travisnasser/CloudLab/raw/main/configure_arm.tar.gz", path="/local"))
+    node.addService(pg.Execute(shell="bash", command="/local/configure_arm64.sh"))
     pass
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
-
