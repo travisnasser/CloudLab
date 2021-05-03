@@ -5,6 +5,6 @@
 * configure_arm.tar.gz # Tarball placed on servers during startup
 * configure_arm.sh     # Bash script that configures a server with OpenMPI, RDMA, etc.
 * gethostname.c        # Example MPI program.
-* mpihosts.*           # Hostfiles for MPI.
+* mpihosts.[1-9]       # Hostfiles for MPI.
 * nodelist             # Hostfile for example MPI program
 ```
