@@ -152,7 +152,7 @@ for i in range(params.nodeCount):
         bs.placement = "any"
         pass
     # Install and execute scripts on the node. 
-    node.addService(pg.Install(url="https://github.com/travisnasser/CloudLab/raw/main/configure_arm.tar.gz", path="/local"))
+    node.addService(pg.Install(url="https://github.com/travisnasser/CloudLab/raw/main/seed_node.tar.gz", path="/local"))
     node.addService(pg.Execute(shell="bash", command="/local/configure_node.sh"))
     pass
 
