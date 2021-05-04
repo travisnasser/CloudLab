@@ -22,10 +22,21 @@ sudo -i -u root bash << \eof1
         make
         make install
 
+        # Copy seed files to mpiuser
         cp /local/bashrc /home/mpiuser/.bashrc
+        cp /local/gethostname.c /home/mpiuser
+        cp /local/mpihosts.* /home/mpiuser
+        cp /local/nodelist /home/mpiuser
+
+        # Download and install NetPIPE
+        wget http://netpipe.cs.ksu.edu/download/NetPIPE-5.1.4.tar.gz
+        tar -xzf NetPIPE-5.1.4.tar.gz && cd NetPIPE-5.1.4
+        make mpi; make tcp
+        cd ..
 
         # Genererate ssh-keys
-        ssh-keygen -t rsa -N "" -f /${USER}/.ssh/id_rsa
+        # TODO: command to fill ~/.ssh/known_hosts
+        ssh-keygen -t rsa -N "" -f /home/${USER}/.ssh/id_rsa
         cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 
         echo "Exiting mipuser"
