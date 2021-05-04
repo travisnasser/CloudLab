@@ -1,7 +1,4 @@
-"""Variable number of nodes in a lan. You have the option of picking from one
-of several standard images we provide, or just use the default (typically a recent
-version of Ubuntu). You may also optionally pick the specific hardware type for
-all the nodes in the lan. 
+"""Variable number of m400 nodes in a lan.
 
 Instructions:
 Wait for the experiment to start, and then log into one or more of the nodes
@@ -28,15 +25,12 @@ pc.defineParameter("nodeCount", "Number of Nodes", portal.ParameterType.INTEGER,
                    "we will create a lan for you.")
 
 # Pick your OS.
-imageList = [
-    ('default', 'Default Image'),
-    ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-ARM', 'UBUNTU 18.04')]
+imageList = [('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-ARM', 'UBUNTU 18.04')]
 
 pc.defineParameter("osImage", "Select OS image",
                    portal.ParameterType.IMAGE,
                    imageList[0], imageList,
-                   longDescription="Most clusters have this set of images, " +
-                   "pick your favorite one.")
+                   longDescription="")
 
 # Optional physical type for all nodes.
 pc.defineParameter("phystype",  "Optional physical node type",
@@ -153,6 +147,7 @@ for i in range(params.nodeCount):
         pass
     # Install and execute scripts on the node. 
     node.addService(pg.Install(url="https://github.com/travisnasser/CloudLab/raw/main/seed_node.tar.gz", path="/local"))
+    # The below execution call doesn't appear to be working. Will need to kickoff manually.
     node.addService(pg.Execute(shell="bash", command="/local/configure_node.sh"))
     pass
 
