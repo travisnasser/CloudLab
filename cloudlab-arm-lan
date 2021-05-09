@@ -147,7 +147,7 @@ for i in range(params.nodeCount):
         pass
     # Install and execute scripts on the node. 
     node.addService(pg.Install(url="https://github.com/travisnasser/CloudLab/raw/main/seed_node.tar.gz", path="/local"))
-    # The below execution call doesn't appear to be working. Will need to kickoff manually.
+    # The below execution call doesn't appear to be working. Will need to kickoff manually with: bash /local/configure_node.sh
     node.addService(pg.Execute(shell="bash", command="/local/configure_node.sh"))
     pass
 

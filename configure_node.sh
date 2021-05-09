@@ -28,6 +28,9 @@ sudo -i -u root bash << \eof1
         cp /local/mpihosts.* /home/mpiuser
         cp /local/nodelist /home/mpiuser
 
+        # Compile the MPI test program
+        mpicc gethostname.c -o gethostname
+
         # Download and install NetPIPE
         wget http://netpipe.cs.ksu.edu/download/NetPIPE-5.1.4.tar.gz
         tar -xzf NetPIPE-5.1.4.tar.gz && cd NetPIPE-5.1.4
