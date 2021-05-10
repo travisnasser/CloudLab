@@ -32,10 +32,12 @@ sudo -i -u root bash << \eof1
         mpicc gethostname.c -o gethostname
 
         # Download and install NetPIPE
-        wget http://netpipe.cs.ksu.edu/download/NetPIPE-5.1.4.tar.gz
+        cd /home/mpiuser/
+	wget http://netpipe.cs.ksu.edu/download/NetPIPE-5.1.4.tar.gz
+        sleep 5
         tar -xzf NetPIPE-5.1.4.tar.gz && cd NetPIPE-5.1.4
         make mpi; make tcp
-        cd ..
+        cd /home/mpiuser/
 
         # Genererate ssh-keys
         # TODO: command to fill ~/.ssh/known_hosts
